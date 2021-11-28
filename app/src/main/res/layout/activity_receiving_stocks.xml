@@ -10,6 +10,39 @@
     <Spinner
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/R_items_spinner"/>
+        android:id="@+id/R_items_spinner"
+        android:layout_centerHorizontal="true"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/R_items_spinner"
+        android:layout_alignLeft="@id/updateButton"
+        android:layout_alignRight="@id/updateButton"
+        android:inputType="number"
+        android:id="@+id/inputNumber"
+        android:layout_centerHorizontal="true"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/inputNumber"
+        android:text="Update Stocks"
+        android:id="@+id/updateButton"
+        android:layout_centerHorizontal="true"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Output View: "
+        android:layout_below="@id/updateButton"
+        android:id="@+id/outputViewText"/>
+
+    <fragment
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:name="com.example.assignment2.OutputView"
+        android:id="@+id/output_fragment"
+        android:layout_below="@id/outputViewText"/>
 
 </RelativeLayout>

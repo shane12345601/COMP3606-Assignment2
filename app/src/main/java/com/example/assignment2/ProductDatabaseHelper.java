@@ -7,6 +7,8 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import androidx.annotation.Nullable;
 
+import java.util.ArrayList;
+
 public class ProductDatabaseHelper extends SQLiteOpenHelper {
     private static final String name = "Product";
     private static final int DB_version= 1;
@@ -48,6 +50,9 @@ public class ProductDatabaseHelper extends SQLiteOpenHelper {
             insertProduct(db, "PS4", 5, 3, 499.00, 1, 5);
             insertProduct(db, "xBox", 7, 4, 599.00, 1, 5);
             insertProduct(db, "Switch", 2, 5, 399.00, 1, 5);
+            insertProduct(db, "Wii", 4, 3, 199.00, 1, 5);
+            insertProduct(db, "PSP", 3, 2, 249.00, 1, 5);
         }
     }
+
 }

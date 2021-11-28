@@ -7,13 +7,15 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.Toast;
 
 import java.util.ArrayList;
 
-public class OrderingStocks extends AppCompatActivity {
+public class OrderingStocks extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     private SQLiteDatabase db;
     private Cursor c;
 
@@ -37,6 +39,7 @@ public class OrderingStocks extends AppCompatActivity {
             }
             ArrayAdapter<String> listOfItems = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, prods);
             Spinner spinner = (Spinner) findViewById(R.id.O_items_spinner);
+            spinner.setOnItemSelectedListener(this);
             spinner.setAdapter(listOfItems);
 
         }catch (SQLiteException e){
@@ -44,4 +47,14 @@ public class OrderingStocks extends AppCompatActivity {
         }
     }
 
+
+    @Override
+    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+        Toast.makeText(getApplicationContext(), Integer.toString(i), Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> adapterView) {
+
+    }
 }

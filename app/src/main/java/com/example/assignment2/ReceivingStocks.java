@@ -1,6 +1,7 @@
 package com.example.assignment2;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentActivity;
 
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -23,7 +24,6 @@ public class ReceivingStocks extends AppCompatActivity {
         setContentView(R.layout.activity_receiving_stocks);
         populateSpinner();
     }
-
 
     public void populateSpinner(){
         SQLiteOpenHelper DBHelper = new ProductDatabaseHelper(this);

@@ -10,6 +10,31 @@
     <Spinner
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/O_items_spinner"/>
+        android:id="@+id/O_items_spinner"
+        android:layout_centerHorizontal="true"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/O_items_spinner"
+        android:id="@+id/stockOnHand_ordering"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/stockOnHand_ordering"
+        android:id="@+id/stockInTransit_ordering"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/stockInTransit_ordering"
+        android:id="@+id/reorderQuantity_ordering"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/stockInTransit_ordering"
+        android:id="@+id/reorderAmount_ordering"/>
 
 </RelativeLayout>
