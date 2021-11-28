@@ -14,6 +14,7 @@ public class ProductDatabaseHelper extends SQLiteOpenHelper {
         super(context, name, null, DB_version);
     }
 
+
     @Override
     public void onCreate(SQLiteDatabase dp) {
         updateMyDatabase(dp,0,DB_version);
