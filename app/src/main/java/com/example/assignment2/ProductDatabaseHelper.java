@@ -10,10 +10,10 @@ import androidx.annotation.Nullable;
 public class ProductDatabaseHelper extends SQLiteOpenHelper {
     private static final String name = "Product";
     private static final int DB_version= 1;
+
     public ProductDatabaseHelper(@Nullable Context context) {
         super(context, name, null, DB_version);
     }
-
 
     @Override
     public void onCreate(SQLiteDatabase dp) {
@@ -44,12 +44,10 @@ public class ProductDatabaseHelper extends SQLiteOpenHelper {
                     + "REORDER_QUANTITY INTEGER,"
                     + "REORDER_AMOUNT INTERGER,"
                     + "PRICE DOUBLE);");
-//                insertDrink(db, "Latte", "Espresso and steamed milk", R.drawable.latte);
-//                insertDrink(db, "Cappucino", "Espresso, hot milk and steamed-milk foam", R.drawable.cappuccino);
-//                insertDrink(db, "Filter", "Our best drip coffee", R.drawable.filter);
-        }
-        if(oldVersion < 2) {
-            db.execSQL("ALTER TABLE DRINK ADD COLUMN FAVOURITE NUMERIC;");
+
+            insertProduct(db, "PS4", 5, 3, 499.00, 1, 5);
+            insertProduct(db, "xBox", 7, 4, 599.00, 1, 5);
+            insertProduct(db, "Switch", 2, 5, 399.00, 1, 5);
         }
     }
 }

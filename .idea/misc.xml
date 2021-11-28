@@ -4,6 +4,9 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/AndroidStudioProjects/Assignment2/app/src/main/res/layout/activity_main.xml" value="0.1272644927536232" />
+        <entry key="..\:/AndroidStudioProjects/Assignment2/app/src/main/res/layout/activity_ordering_stocks.xml" value="0.36666666666666664" />
+        <entry key="..\:/AndroidStudioProjects/Assignment2/app/src/main/res/layout/activity_receiving_stock.xml" value="0.3229166666666667" />
+        <entry key="..\:/AndroidStudioProjects/Assignment2/app/src/main/res/layout/activity_receiving_stocks.xml" value="0.3229166666666667" />
         <entry key="..\:/AndroidStudioProjects/Assignment2/app/src/main/res/layout/activity_toplevelview.xml" value="0.1" />
       </map>
     </option>
