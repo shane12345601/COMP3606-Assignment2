@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -50,7 +51,25 @@ public class OrderingStocks extends AppCompatActivity implements AdapterView.OnI
 
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-        Toast.makeText(getApplicationContext(), Integer.toString(i), Toast.LENGTH_LONG).show();
+
+        SQLiteOpenHelper DBHelper = new ProductDatabaseHelper(this);
+        try {
+            db = DBHelper.getReadableDatabase();
+            c = db.rawQuery("SELECT * FROM PRODUCT WHERE _id = ?", new String[] { Integer.toString(i+1) });
+            c.moveToFirst();
+            TextView textView;
+            textView = (TextView) findViewById(R.id.stockOnHand_ordering);
+            textView.setText("Stock On Hand: "+c.getString(2));
+            textView = (TextView) findViewById(R.id.stockInTransit_ordering);
+            textView.setText("Stock In Transit: "+c.getString(3));
+            textView = (TextView) findViewById(R.id.reorderQuantity_ordering);
+            textView.setText("Reorder Quantity: "+c.getString(4));
+            textView = (TextView) findViewById(R.id.reorderAmount_ordering);
+            textView.setText("Reorder Amount: "+c.getString(5));
+
+        }catch (SQLiteException e){
+            Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_LONG).show();
+        }
     }
 
     @Override

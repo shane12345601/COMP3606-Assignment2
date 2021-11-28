@@ -34,7 +34,39 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/stockInTransit_ordering"
+        android:layout_below="@id/reorderQuantity_ordering"
         android:id="@+id/reorderAmount_ordering"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/reorderAmount_ordering"
+        android:inputType="number"
+        android:id="@+id/inputNumber_ordering"
+        android:layout_centerHorizontal="true"
+        android:layout_alignRight="@id/updateButton_ordering"
+        android:layout_alignLeft="@id/updateButton_ordering"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/inputNumber_ordering"
+        android:text="Make Order"
+        android:id="@+id/updateButton_ordering"
+        android:layout_centerHorizontal="true"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Output View: "
+        android:layout_below="@id/updateButton_ordering"
+        android:id="@+id/outputViewText"/>
+
+    <fragment
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:name="com.example.assignment2.OutputView"
+        android:id="@+id/output_fragment"
+        android:layout_below="@id/outputViewText"/>
 
 </RelativeLayout>
