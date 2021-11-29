@@ -23,7 +23,7 @@ public class ProductAPI {
     public  String SQLiteToJson(Context context){
         ArrayList<HashMap<String,String>> dirtyProductList;
         dirtyProductList = new ArrayList<HashMap<String,String>>();
-        String query = "SELECT * FROM PRODUCT where DIRTY = 1";
+        String query = "SELECT  * FROM PRODUCT where DIRTY = 1";
         SQLiteOpenHelper productHelper = new ProductDatabaseHelper(context);
         SQLiteDatabase database = productHelper.getWritableDatabase();
         Cursor cursor = database.rawQuery(query,null);
@@ -50,8 +50,8 @@ public class ProductAPI {
 
         AsyncHttpClient client = new AsyncHttpClient();
         RequestParams params = new RequestParams();
-        params.put("drinksJSON", SQLiteToJson(view.getContext()));
-        client.post("https://producttest.free.beeceptor.com", params,new AsyncHttpResponseHandler(){
+        params.put("productJSON", SQLiteToJson(view.getContext()));
+        client.post("https://producttest.free.beeceptor.com/productmanagement/syncdb.php", params,new AsyncHttpResponseHandler(){
 
             @Override
             public void onSuccess(int i, Header[] headers, byte[] bytes) {

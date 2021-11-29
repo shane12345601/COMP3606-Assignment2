@@ -101,7 +101,7 @@ public class OrderingStocks extends AppCompatActivity implements AdapterView.OnI
                 c.moveToFirst();
                 int newValue2 = c.getInt(0) + numberEntered;
                 cv.put("STOCK_IN_TRANSIT", newValue2);
-
+                cv.put("DIRTY", true);
                 db.update("PRODUCT", cv, "_id = ?", new String[]{Integer.toString(itemSelected+1)});
                 this.recreate();
             }catch (SQLiteException e){

@@ -4,6 +4,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 
@@ -52,6 +53,11 @@ public class ProductDatabaseHelper extends SQLiteOpenHelper {
             insertProduct(db, "Switch", 2, 5, 399.00, 1, 5);
             insertProduct(db, "Wii", 4, 3, 199.00, 1, 5);
             insertProduct(db, "PSP", 3, 2, 249.00, 1, 5);
+
+        }
+        if(oldVersion < 3)
+        {
+            db.execSQL("ALTER TABLE PRODUCT ADD COLUMN DIRTY BIT default 'FALSE'");
         }
     }
 

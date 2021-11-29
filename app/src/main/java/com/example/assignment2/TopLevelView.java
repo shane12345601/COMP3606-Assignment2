@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 import android.widget.Spinner;
@@ -21,6 +22,7 @@ import java.util.ArrayList;
 public class TopLevelView extends AppCompatActivity {
     private SQLiteDatabase db;
     private Cursor c;
+    private ProductAPI productAPI;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,24 +48,17 @@ public class TopLevelView extends AppCompatActivity {
             }
         });
 
-//        SQLiteOpenHelper DBHelper = new ProductDatabaseHelper(this);
-//        try {
-//            db = DBHelper.getReadableDatabase();
-//            c = db.rawQuery("SELECT * FROM PRODUCT", null);
-//            ArrayList<String> prods = new ArrayList<>();
-//            if(c.moveToFirst()){
-//                do {
-//                    prods.add(c.getString(1) + "|" + c.getString(2));
-//                }while (c.moveToNext());
-//            }
-//            ArrayAdapter<String> temp = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, prods);
-//            ListView listView1 = (ListView)findViewById(R.id.tempList);
-//            listView1.setAdapter(temp);
-//
-//        }catch (SQLiteException e){
-//            Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_LONG).show();
-//        }
+        Button btn = (Button) findViewById(R.id.syncBtn);
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onPress(view);
+            }
+        });
     }
 
-
+    public void onPress(View view){
+        productAPI = new ProductAPI();
+        productAPI.onSync(view);
+    }
 }

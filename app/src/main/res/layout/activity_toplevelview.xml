@@ -21,4 +21,13 @@
         android:id="@+id/listView"
         android:layout_below="@+id/greetingTextView"></ListView>
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/listView"
+        android:text="SYNC"
+        android:layout_marginTop="20dp"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/syncBtn"/>
+
 </RelativeLayout>
