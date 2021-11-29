@@ -29,7 +29,7 @@
         android:layout_below="@id/inputNumber"
         android:text="Update Stocks"
         android:id="@+id/updateButton"
-        android:layout_centerHorizontal="true"/>
+        android:layout_centerHorizontal="true" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -43,6 +43,7 @@
         android:layout_height="wrap_content"
         android:name="com.example.assignment2.OutputView"
         android:id="@+id/output_fragment"
-        android:layout_below="@id/outputViewText"/>
+        android:layout_below="@id/outputViewText"
+        android:tag="fragtag"/>
 
 </RelativeLayout>

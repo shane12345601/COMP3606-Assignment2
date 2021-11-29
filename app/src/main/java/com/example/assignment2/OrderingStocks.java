@@ -2,6 +2,7 @@ package com.example.assignment2;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
@@ -10,6 +11,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -25,6 +28,14 @@ public class OrderingStocks extends AppCompatActivity implements AdapterView.OnI
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ordering_stocks);
         populateSpinner();
+
+        Button btn = (Button) findViewById(R.id.updateButton_ordering);
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onPress(view);
+            }
+        });
     }
 
     public void populateSpinner(){
@@ -69,6 +80,35 @@ public class OrderingStocks extends AppCompatActivity implements AdapterView.OnI
 
         }catch (SQLiteException e){
             Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_LONG).show();
+        }
+    }
+
+    public void onPress(View view){
+        Spinner spinner = (Spinner) findViewById(R.id.O_items_spinner);
+        EditText editText = (EditText) findViewById(R.id.inputNumber_ordering);
+        int spinnerPos = spinner.getSelectedItemPosition();
+        if(editText.getText().toString().trim().length() > 0){
+
+            SQLiteOpenHelper DBHelper = new ProductDatabaseHelper(this);
+            try {
+                db = DBHelper.getReadableDatabase();
+
+                int numberEntered = Integer.parseInt(editText.getText().toString());
+                int itemSelected = spinner.getSelectedItemPosition();
+                ContentValues cv = new ContentValues();
+
+                c = db.rawQuery("SELECT STOCK_IN_TRANSIT FROM PRODUCT WHERE _id = ?", new String[] { Integer.toString(spinnerPos+1) });
+                c.moveToFirst();
+                int newValue2 = c.getInt(0) + numberEntered;
+                cv.put("STOCK_IN_TRANSIT", newValue2);
+
+                db.update("PRODUCT", cv, "_id = ?", new String[]{Integer.toString(itemSelected+1)});
+                this.recreate();
+            }catch (SQLiteException e){
+                Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_LONG).show();
+            }
+        }else{
+            Toast.makeText(this, "Please enter a number", Toast.LENGTH_SHORT).show();
         }
     }
 
