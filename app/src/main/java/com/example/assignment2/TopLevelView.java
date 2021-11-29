@@ -59,6 +59,13 @@ public class TopLevelView extends AppCompatActivity {
 
     public void onPress(View view){
         productAPI = new ProductAPI();
-        productAPI.onSync(view);
+        int res;
+        res = productAPI.onSync(view);
+        if(res==200){
+            Toast.makeText(this, "Successfully Synced", Toast.LENGTH_LONG).show();
+        }
+        else{
+            Toast.makeText(this, "Failed Sync", Toast.LENGTH_LONG).show();
+        }
     }
 }

@@ -18,7 +18,7 @@ import com.loopj.android.http.RequestParams;
 import cz.msebera.android.httpclient.Header;
 
 public class ProductAPI {
-
+    private int res;
 
     public  String SQLiteToJson(Context context){
         ArrayList<HashMap<String,String>> dirtyProductList;
@@ -31,12 +31,8 @@ public class ProductAPI {
             do{
                 HashMap<String,String> map = new HashMap<String, String>();
                 map.put("_id",cursor.getString(0));
-                map.put("NAME",cursor.getString(1));
                 map.put("STOCK_ON_HAND",cursor.getString(2));
                 map.put("STOCK_IN_TRANSIT",cursor.getString(3));
-                map.put("PRICE",cursor.getString(4));
-                map.put("RECORDER_QUANTITY",cursor.getString(5));
-                map.put("RECORDER_AMOUNT",cursor.getString(6));
                 dirtyProductList.add(map);
             }while(cursor.moveToNext());
         }
@@ -45,7 +41,7 @@ public class ProductAPI {
         return gson.toJson(dirtyProductList);
     }
 
-    public void onSync(View view){
+    public int onSync(View view){
        // Toast.makeText(TopLevelActivity.this, "Attempting to sync...", Toast.LENGTH_LONG).show();
 
         AsyncHttpClient client = new AsyncHttpClient();
@@ -58,22 +54,27 @@ public class ProductAPI {
                 String byteToString = null;
                 try {
                     byteToString = new String(bytes, "UTF-8");
+                    res = 200;
                 } catch (UnsupportedEncodingException e) {
                     e.printStackTrace();
                 }
+
                // Toast.makeText(TopLevelActivity.this, "Successful response: " + byteToString, Toast.LENGTH_LONG).show();
             }
 
             @Override
             public void onFailure(int i, Header[] headers, byte[] bytes, Throwable throwable) {
                 if(i == 404){
+                    res=404;
                     //Toast.makeText(getApplicationContext(), "Requested resource not found", Toast.LENGTH_LONG).show();
                 }else if(i == 500){
+                    res=500;
                     //Toast.makeText(getApplicationContext(), "Something went wrong at server end", Toast.LENGTH_LONG).show();
                 }else{
                     //Toast.makeText(getApplicationContext(), "Unexpected Error occcured! [Most common Error: Device might not be connected to Internet]", Toast.LENGTH_LONG).show();
                 }
             }
         });
+        return 200;
     }
 }
